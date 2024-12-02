@@ -27,8 +27,11 @@ services:
       - PG_DB_PASSWORD_FILE=/run/secrets/PG_DB_PASSWORD_FILE
       - PG_DB_HOST=db
       - PG_DB_NAME=postgres
+      - JWT_SECRET_FILE=/run/secrets/JWT_SECRET_FILE
+      - CORS_ORIGIN=https://blog.rushingalien.my.id
     secrets:
       - PG_DB_PASSWORD_FILE
+      - JWT_SECRET_FILE
     depends_on:
       - db
   
@@ -39,8 +42,6 @@ services:
       - 8000:80
     depends_on:
       - backend
-    environment:
-      - REACT_APP_SERVER_HOST=http://localhost:3001
 
 volumes:
   db:
@@ -48,5 +49,5 @@ volumes:
 secrets:
   PG_DB_PASSWORD_FILE:
     external: true
-
-# test 3
+  JWT_SECRET_FILE:
+    external: true
