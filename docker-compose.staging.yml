@@ -24,7 +24,7 @@ services:
       - PG_DB_HOST=db
       - PG_DB_NAME=postgres
       - JWT_SECRET_FILE=/run/secrets/JWT_SECRET_FILE
-      - CORS_ORIGIN=https://10.34.9.48:8001
+      - CORS_ORIGIN=http://10.34.9.48:8001
     secrets:
       - PG_DB_PASSWORD_FILE
       - JWT_SECRET_FILE
