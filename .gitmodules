@@ -1,8 +1,8 @@
 [submodule "premium-blog-be"]
 	path = premium-blog-be
 	url = https://github.com/DevSecOps-b-1/premium-blog-be
-	branch = master
+	branch = staging
 [submodule "premium-blog-fe"]
 	path = premium-blog-fe
 	url = https://github.com/DevSecOps-b-1/premium-blog-fe
-	branch = master
+	branch = staging
