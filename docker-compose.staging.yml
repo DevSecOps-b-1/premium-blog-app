@@ -1,0 +1,52 @@
+services:
+  db:
+    image: postgres:17-alpine
+    restart: no
+    ports:
+      - 5433:5432
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD_FILE=/run/secrets/PG_DB_PASSWORD_FILE
+      - POSTGRES_DB=postgres
+    volumes:
+      - db-staging:/var/lib/postgresql/data
+    secrets:
+      - PG_DB_PASSWORD_FILE
+
+  backend:
+    build: premium-blog-be
+    restart: no
+    ports:
+      - 3002:3001
+    depends_on:
+      - db
+    environment:
+      - PG_DB_USER=postgres
+      - PG_DB_PASSWORD_FILE=/run/secrets/PG_DB_PASSWORD_FILE
+      - PG_DB_HOST=db
+      - PG_DB_NAME=postgres
+      - JWT_SECRET_FILE=/run/secrets/JWT_SECRET_FILE
+      - CORS_ORIGIN=https://10.34.9.48:8001
+    secrets:
+      - PG_DB_PASSWORD_FILE
+      - JWT_SECRET_FILE
+    depends_on:
+      - db
+  
+  frontend: # WIP
+    build: premium-blog-fe
+    restart: no
+    ports:
+      - 8001:3000
+    depends_on:
+      - backend
+
+volumes:
+  db-staging:
+    name: db-staging
+
+secrets:
+  PG_DB_PASSWORD_FILE:
+    external: true
+  JWT_SECRET_FILE:
+    external: true
