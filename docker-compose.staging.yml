@@ -1,7 +1,6 @@
 services:
   db:
     image: postgres:17-alpine
-    restart: no
     ports:
       - 5433:5432
     environment:
@@ -15,7 +14,6 @@ services:
 
   backend:
     build: premium-blog-be
-    restart: no
     ports:
       - 3002:3001
     depends_on:
@@ -35,7 +33,6 @@ services:
   
   frontend: # WIP
     build: premium-blog-fe
-    restart: no
     ports:
       - 8001:3000
     depends_on:

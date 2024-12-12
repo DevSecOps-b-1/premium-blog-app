@@ -1,7 +1,6 @@
 services:
   db:
     image: postgres:17-alpine
-    restart: no
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD_FILE=/run/secrets/PG_DB_PASSWORD_FILE
@@ -13,7 +12,6 @@ services:
 
   backend:
     build: premium-blog-be
-    restart: no
     depends_on:
       - db
     environment:
