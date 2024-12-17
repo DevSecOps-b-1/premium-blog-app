@@ -30,7 +30,7 @@ services:
       - JWT_SECRET_FILE
     depends_on:
       - db
-    cmd:
+    command:
       - npm
       - run
       - staging
