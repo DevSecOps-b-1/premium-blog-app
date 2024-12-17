@@ -30,6 +30,10 @@ services:
       - JWT_SECRET_FILE
     depends_on:
       - db
+    cmd:
+      - npm
+      - run
+      - staging
   
   frontend: # WIP
     build: premium-blog-fe
