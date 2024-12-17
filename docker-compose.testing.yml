@@ -12,6 +12,7 @@ services:
 
   backend:
     build: premium-blog-be
+    user: root
     depends_on:
       - db
     environment:
